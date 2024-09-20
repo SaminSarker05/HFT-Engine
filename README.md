@@ -9,10 +9,15 @@
 - momentum trading
 - cointegration
 
-Today:
-- build API to gather stock data; TESLA
-- trying Polygon.io
+two APIs,
+- one gathers information about a stock every 5 minutes
+- other makes move paper traded moves on market 
 
-API KEY = zZyYBE2053mhvMXe7oT9nxftLZKtOJ9w
-make a get request to api endpoint to get aggregate data of stock within a date range
-https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-02-10?adjusted=true&sort=asc&apiKey=zZyYBE2053mhvMXe7oT9nxftLZKtOJ9w
+1. ingest real time financial data, from various exchanges and data providers
+  - reduce latentenct
+
+2. signal generation
+
+3. order execution
+
+https://github.com/nlohmann/json
