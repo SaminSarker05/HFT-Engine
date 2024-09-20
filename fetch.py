@@ -7,10 +7,16 @@ import time
 import json
 import os
 
+SLEEP_TIME = 60
+
 # download stock data using yfinance API
 def make_api_call(ticker):
-  data = yf.download(tickers=ticker, interval="1m", period="1d")
-  return data
+  try:
+    data = yf.download(tickers=ticker, interval="1m", period="1d")
+    return data
+  except Exception as e:
+    print(f'error with API: {e}')
+    return None
 
 # save in JSON format
 def save_to_json(data, filename):
@@ -24,7 +30,7 @@ def fetch_data(ticker):
     data = make_api_call(ticker)
     save_to_json(data, f'{ticker}.json')
     print(f'wrote to file for {ticker}')
-    time.sleep(60)
+    time.sleep(SLEEP_TIME)
 
 def main():
   tickers = ['AAPL', 'MSFT']
@@ -36,7 +42,7 @@ def main():
     thread.start()
 
   for thread in threads:
-    thread.join() # 
+    thread.join() # wait for child threads before exiting main
 
 if __name__ == "__main__":
   main()
