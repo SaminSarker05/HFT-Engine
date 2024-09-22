@@ -38,7 +38,10 @@ std::vector<StockData> get_data(const std::string& ticker)
 
 int main() 
 {
-  auto stock_data = get_data("MSFT.csv");
-  int signal = moving_average_crossover(stock_data, 5, 10);
-  std::cout << signal << std::endl;
+  auto stock_data_MSFT = get_data("MSFT.csv");
+  auto stock_data_AAPL = get_data("AAPL.csv");
+  int signal_MFST = moving_average_crossover(stock_data_MSFT, 5, 10);
+  int signal_AAPL = moving_average_crossover(stock_data_AAPL, 5, 10);
+  std::cout << signal_MFST << std::endl;
+  std::cout << signal_AAPL << std::endl;
 }
