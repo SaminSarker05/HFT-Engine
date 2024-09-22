@@ -1,7 +1,9 @@
+#ifndef MA_SIGNAL
+#define MA_SIGNAL
+
 #include <iostream>
 #include <vector>
 #include "StockData.h"
-
 
 double get_average(std::vector<StockData>& data, int period) 
 {
@@ -24,3 +26,5 @@ int moving_average_crossover(std::vector<StockData>& data, int ma1, int ma2)
   }
   return 0;
 }
+
+#endif

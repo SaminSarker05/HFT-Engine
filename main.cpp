@@ -4,7 +4,8 @@
 #include <sstream>
 #include <vector>
 #include "StockData.h"
-#include "ma.h"
+#include "ma_signal.h"
+#include "volume_signal.h"
 
 std::vector<StockData> get_data(const std::string& ticker) 
 {
@@ -40,8 +41,8 @@ int main()
 {
   auto stock_data_MSFT = get_data("MSFT.csv");
   auto stock_data_AAPL = get_data("AAPL.csv");
-  int signal_MFST = moving_average_crossover(stock_data_MSFT, 5, 10);
-  int signal_AAPL = moving_average_crossover(stock_data_AAPL, 5, 10);
-  std::cout << signal_MFST << std::endl;
-  std::cout << signal_AAPL << std::endl;
+  std::cout << "ma MSFT: " << moving_average_crossover(stock_data_MSFT, 5, 10) << std::endl;
+  std::cout << "ma AAPL: " << moving_average_crossover(stock_data_AAPL, 5, 10) << std::endl;
+  std::cout << "volume MSFT: " << volume_check(stock_data_MSFT, 20) << std::endl;
+  std::cout << "volume AAPL: " << volume_check(stock_data_AAPL, 20) << std::endl;
 }
