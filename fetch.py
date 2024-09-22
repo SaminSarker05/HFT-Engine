@@ -18,17 +18,16 @@ def make_api_call(ticker):
     print(f'error with API: {e}')
     return None
 
-# save in JSON format
+# save in CSV format
 def save_to_json(data, filename):
-  data_dict = data.to_dict(orient='records')
-  with open(filename, 'w') as f:
-    json.dump(data_dict, f, indent=3)
+  if data is not None:
+    data.to_csv(filename, index=True)
 
 # fetch data every minue
 def fetch_data(ticker):
   while True:
     data = make_api_call(ticker)
-    save_to_json(data, f'{ticker}.json')
+    save_to_json(data, f'{ticker}.csv')
     print(f'wrote to file for {ticker}')
     time.sleep(SLEEP_TIME)
 
