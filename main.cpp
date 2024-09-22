@@ -6,6 +6,7 @@
 #include "StockData.h"
 #include "ma_signal.h"
 #include "volume_signal.h"
+#include <thread>
 
 std::vector<StockData> get_data(const std::string& ticker) 
 {
@@ -34,15 +35,24 @@ std::vector<StockData> get_data(const std::string& ticker)
 
   file.close();
   return data;
+};
+
+void process_stock(const std::string& ticker) 
+{
+  auto stock_data = get_data(ticker);
+  std::cout << "ma " << ticker << ": " << moving_average_crossover(stock_data, 5, 10) << std::endl;
+  std::cout << "volume " << ticker << ": " << volume_check(stock_data, 20) << std::endl;
+
 }
 
 
 int main() 
 {
-  auto stock_data_MSFT = get_data("MSFT.csv");
-  auto stock_data_AAPL = get_data("AAPL.csv");
-  std::cout << "ma MSFT: " << moving_average_crossover(stock_data_MSFT, 5, 10) << std::endl;
-  std::cout << "ma AAPL: " << moving_average_crossover(stock_data_AAPL, 5, 10) << std::endl;
-  std::cout << "volume MSFT: " << volume_check(stock_data_MSFT, 20) << std::endl;
-  std::cout << "volume AAPL: " << volume_check(stock_data_AAPL, 20) << std::endl;
+  std::thread MSFT(process_stock, "MSFT.csv");
+  std::thread AAPL(process_stock, "AAPL.CSV");
+
+  MSFT.join();
+  AAPL.join();
+
+  return 0;
 }
