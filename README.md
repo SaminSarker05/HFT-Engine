@@ -21,3 +21,6 @@ two APIs,
 3. order execution
 
 https://github.com/nlohmann/json
+
+voting system? have 5 algos race and generate buy, hold, sell signal. 
+we take majority of first 4 returned and excecute trade
