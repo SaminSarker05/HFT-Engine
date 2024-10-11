@@ -3,6 +3,7 @@
 - minimize latency
 - algo to generate buy/sell signal
 - risk management (hedging)
+- python, sockets, NLP
 
 - pairs trading
 - mean reversion
