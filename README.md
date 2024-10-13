@@ -15,7 +15,7 @@ two APIs,
 - other makes move paper traded moves on market 
 
 1. ingest real time financial data, from various exchanges and data providers
-  - reduce latentenct
+  - reduce latency
 
 2. signal generation
 
